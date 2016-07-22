@@ -98,6 +98,7 @@ class Daemon(object):
                 sys.stderr.write(message % self.pidfile)
                 return # not an error in a restart
 
+        
         # Try killing the daemon process       
         try:
                 while 1:
@@ -111,6 +112,8 @@ class Daemon(object):
                 else:
                         print str(err)
                         sys.exit(1)
+        os.remove(self.stdout)
+        os.remove(self.stderr)
 
     def restart(self):
         """
